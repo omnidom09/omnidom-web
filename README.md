@@ -4,7 +4,7 @@ A single-page, responsive hub for insights, services, and digital resources powe
 
 OMNIDOM is a lightweight, responsive, single-page web platform and content management system (CMS) designed for content creators, agencies, and independent service providers. Built with a modern, clean UI, it brings blogs, service catalogs, digital products, and lead generation together under one roof, backed by a real-time serverless database.
 
-## 🚀 Features
+## Features
 
 ### Public Site
 - **Dynamic Blog Engine:** Read full-length articles with search filters and clean typography.
@@ -20,7 +20,7 @@ OMNIDOM is a lightweight, responsive, single-page web platform and content manag
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Frontend:** Vanilla HTML5, CSS3 Custom Properties (Variables), modern JavaScript Modules (ES6+).
 - **Database & Backend:** Google Firebase (Firestore Serverless DB).
