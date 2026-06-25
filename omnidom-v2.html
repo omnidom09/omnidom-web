@@ -1,0 +1,1822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OMNIDOM — Knowledge. Services. Growth.</title>
+  <meta name="description" content="Your daily source for insights, services, and curated resources." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- ════════════════════════════════════════════════════════════════════════
+       SECTION 1 ─ GLOBAL STYLES
+       ════════════════════════════════════════════════════════════════════════ -->
+  <style>
+
+    /* ── 1.1  CSS VARIABLES ── */
+    :root {
+      --black      : #0D0D0D;
+      --white      : #FFFFFF;
+      --bg         : #F8F8F6;
+      --card       : #FFFFFF;
+      --border     : #E8E8E4;
+      --border2    : #D4D4CE;
+      --t1         : #0D0D0D;
+      --t2         : #404040;
+      --t3         : #888880;
+      --accent     : #5452F6;
+      --accent-bg  : rgba(84,82,246,0.07);
+      --green      : #16A34A;
+      --red        : #DC2626;
+      --radius     : 10px;
+      --radius-lg  : 18px;
+      --shadow     : 0 1px 3px rgba(0,0,0,0.05), 0 4px 20px rgba(0,0,0,0.07);
+      --shadow-lg  : 0 8px 40px rgba(0,0,0,0.12);
+      --font-d     : 'Instrument Serif', Georgia, serif;
+      --font-b     : 'Plus Jakarta Sans', sans-serif;
+      --nav-h      : 64px;
+      --sidebar-w  : 240px;
+    }
+
+    /* ── 1.2  RESET ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html    { scroll-behavior: smooth; }
+    body    { font-family: var(--font-b); background: var(--bg); color: var(--t1); font-size: 16px; line-height: 1.65; overflow-x: hidden; }
+    img     { max-width: 100%; display: block; }
+    a       { color: inherit; text-decoration: none; }
+    button  { font-family: var(--font-b); cursor: pointer; }
+    p       { color: var(--t2); }
+    ::-webkit-scrollbar       { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+
+    /* ── 1.3  TYPOGRAPHY ── */
+    h1 { font-family: var(--font-d); font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 400; line-height: 1.1; letter-spacing: -0.03em; }
+    h2 { font-family: var(--font-d); font-size: clamp(2rem, 4vw, 3rem);   font-weight: 400; line-height: 1.15; letter-spacing: -0.02em; }
+    h3 { font-size: 1.15rem; font-weight: 700; line-height: 1.35; }
+    h4 { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--t3); }
+
+    /* ── 1.4  LAYOUT UTILITIES ── */
+    .section     { padding: 80px 6vw; }
+    .section-sm  { padding: 56px 6vw; }
+    .container   { max-width: 1080px; margin: 0 auto; }
+    .eyebrow     { display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem; }
+    .grid-2      { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .grid-3      { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+    .grid-4      { display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; }
+    .grid-auto   { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); gap: 1.5rem; }
+    .flex-center { display: flex; align-items: center; justify-content: center; }
+    .flex-between{ display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .gap-1       { gap: 1rem; }
+
+    /* ── 1.5  BUTTONS ── */
+    .btn { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.65rem 1.5rem; border-radius: 100px; font-weight: 700; font-size: 0.9rem; border: none; transition: all 0.2s; white-space: nowrap; }
+    .btn-sm { padding: 0.42rem 1rem; font-size: 0.8rem; }
+    .btn-primary { background: var(--black); color: var(--white); }
+    .btn-primary:hover { background: #2a2a2a; transform: translateY(-1px); }
+    .btn-outline { background: transparent; color: var(--black); border: 1.5px solid var(--border2); }
+    .btn-outline:hover { border-color: var(--black); }
+    .btn-accent  { background: var(--accent); color: var(--white); }
+    .btn-accent:hover  { background: #3d3bc4; transform: translateY(-1px); }
+    .btn-green   { background: #15803d; color: #fff; }
+    .btn-green:hover { background: #166534; }
+    .btn-danger  { background: var(--red); color: #fff; }
+    .btn-danger:hover { background: #b91c1c; }
+    .btn-ghost   { background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2); }
+    .btn-ghost:hover { background: rgba(255,255,255,0.18); }
+    .btn:disabled{ opacity: 0.6; cursor: not-allowed; transform: none !important; }
+
+    /* ── 1.6  BADGES ── */
+    .badge       { display: inline-block; padding: 0.22rem 0.65rem; border-radius: 100px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
+    .badge-accent{ background: var(--accent-bg); color: var(--accent); }
+    .badge-dark  { background: var(--black); color: var(--white); }
+    .badge-light { background: var(--border); color: var(--t2); }
+
+    /* ── 1.7  CARDS ── */
+    .card       { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; transition: box-shadow 0.25s, transform 0.25s; }
+    .card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+    .card-body  { padding: 1.5rem; }
+    .card-img   { width: 100%; aspect-ratio: 16/9; object-fit: cover; background: var(--border); }
+    .card-img-placeholder { width: 100%; aspect-ratio: 16/9; background: linear-gradient(135deg,#f0f0ee,#e4e4e0); display: flex; align-items: center; justify-content: center; font-size: 2rem; }
+
+    /* ── 1.8  FORMS ── */
+    .form-group        { margin-bottom: 1.1rem; }
+    .form-group label  { display: block; font-size: 0.8rem; font-weight: 700; color: var(--t2); margin-bottom: 0.35rem; letter-spacing: 0.02em; }
+    .form-group input,
+    .form-group textarea,
+    .form-group select { width: 100%; padding: 0.68rem 1rem; border: 1.5px solid var(--border); border-radius: var(--radius); font-family: var(--font-b); font-size: 0.92rem; background: var(--bg); color: var(--t1); transition: border-color 0.2s; outline: none; }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus { border-color: var(--accent); background: var(--white); }
+    .form-group textarea  { resize: vertical; min-height: 110px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    /* ── 1.9  MODAL ── */
+    .modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.55); backdrop-filter: blur(5px); z-index: 500; display: flex; align-items: center; justify-content: center; padding: 2rem; }
+    .modal-box { background: var(--white); border-radius: var(--radius-lg); padding: 2.5rem; max-width: 480px; width: 100%; box-shadow: var(--shadow-lg); }
+    .modal-box h3 { font-family: var(--font-d); font-size: 1.7rem; margin-bottom: 0.4rem; }
+    .modal-box .modal-sub { color: var(--t3); font-size: 0.88rem; margin-bottom: 1.4rem; }
+
+    /* ── 1.10  TOAST ── */
+    #toast { position: fixed; bottom: 1.8rem; right: 1.8rem; z-index: 9999; background: var(--black); color: var(--white); padding: 0.85rem 1.4rem; border-radius: var(--radius); font-size: 0.86rem; font-weight: 600; box-shadow: var(--shadow-lg); transform: translateY(80px); opacity: 0; transition: all 0.3s ease; max-width: 300px; }
+    #toast.show    { transform: translateY(0); opacity: 1; }
+    #toast.success { background: var(--green); }
+    #toast.error   { background: var(--red); }
+
+    /* ── 1.11  LOADING / EMPTY STATES ── */
+    .spinner { display: inline-block; width: 18px; height: 18px; border: 2px solid rgba(0,0,0,0.1); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.7s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loading-wrap { display: flex; justify-content: center; align-items: center; padding: 5rem; }
+    .empty-state  { text-align: center; padding: 4rem 2rem; color: var(--t3); }
+    .empty-state .empty-icon { font-size: 2.4rem; margin-bottom: 0.8rem; }
+    .empty-state p { font-size: 0.9rem; }
+
+    /* ════════════════════════════════════════════
+       PUBLIC NAV
+       ════════════════════════════════════════════ */
+    #pub-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: var(--nav-h); background: rgba(255,255,255,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 6vw; }
+    .nav-brand { font-family: var(--font-b); font-weight: 800; font-size: 1.25rem; letter-spacing: -0.04em; }
+    .nav-brand span { color: var(--accent); }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-size: 0.88rem; font-weight: 600; color: var(--t2); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--black); }
+    .nav-cta { background: var(--black); color: var(--white); padding: 0.48rem 1.2rem; border-radius: 100px; font-weight: 700; font-size: 0.84rem; transition: background 0.2s; }
+    .nav-cta:hover { background: #2a2a2a; }
+    .hamburger { display: none; background: none; border: none; font-size: 1.4rem; padding: 0.3rem; }
+    .mob-nav { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; z-index: 199; background: var(--white); border-bottom: 1px solid var(--border); padding: 1.2rem 6vw 1.8rem; }
+    .mob-nav.open { display: block; }
+    .mob-nav a { display: block; padding: 0.75rem 0; border-bottom: 1px solid var(--border); font-weight: 600; color: var(--t2); }
+    .mob-nav a:last-child { border-bottom: none; }
+
+    /* ════════════════════════════════════════════
+       FOOTER
+       ════════════════════════════════════════════ */
+    #pub-footer { background: var(--black); color: var(--white); padding: 4rem 6vw 2rem; }
+    .footer-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 3rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .footer-brand { font-weight: 800; font-size: 1.25rem; letter-spacing: -0.04em; margin-bottom: 0.75rem; }
+    .footer-brand span { color: var(--accent); }
+    .footer-desc { font-size: 0.86rem; color: rgba(255,255,255,0.45); line-height: 1.7; }
+    .footer-col h5 { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.35); margin-bottom: 1rem; }
+    .footer-col a { display: block; font-size: 0.86rem; color: rgba(255,255,255,0.6); padding: 0.28rem 0; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--white); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 2rem; font-size: 0.78rem; color: rgba(255,255,255,0.3); flex-wrap: wrap; gap: 0.5rem; }
+
+    /* ════════════════════════════════════════════
+       PAGE — HERO
+       ════════════════════════════════════════════ */
+    .page-hero { background: var(--black); color: var(--white); padding: calc(var(--nav-h) + 72px) 6vw 72px; position: relative; overflow: hidden; }
+    .page-hero::after { content:''; position:absolute; top:0; right:0; width:55%; height:100%; background:radial-gradient(ellipse at 80% 50%,rgba(84,82,246,0.13) 0%,transparent 65%); pointer-events:none; }
+    .page-hero h1 { color: var(--white); position: relative; z-index: 1; }
+    .page-hero h1 em { color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.45); font-style: italic; }
+    .page-hero .sub { color: rgba(255,255,255,0.5); font-size: 1.05rem; max-width: 480px; margin: 1.2rem 0 0; position: relative; z-index: 1; }
+    .page-hero .eyebrow { color: rgba(255,255,255,0.4); }
+    .page-hero-actions { display: flex; gap: 0.9rem; flex-wrap: wrap; margin-top: 2.2rem; position: relative; z-index: 1; }
+
+    /* ════════════════════════════════════════════
+       PAGE — BLOG
+       ════════════════════════════════════════════ */
+    .blog-grid  { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.4rem; }
+    .blog-card  { cursor: pointer; }
+    .blog-meta  { display: flex; align-items: center; gap: 0.55rem; margin-bottom: 0.55rem; }
+    .blog-title { font-weight: 700; font-size: 1rem; line-height: 1.4; margin-bottom: 0.45rem; }
+    .blog-excerpt { font-size: 0.86rem; color: var(--t3); line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .blog-foot  { display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+    .blog-date  { font-size: 0.76rem; color: var(--t3); }
+    .blog-read  { font-size: 0.76rem; font-weight: 700; color: var(--accent); }
+    .filter-chips { display: flex; gap: 0.45rem; flex-wrap: wrap; }
+    .chip { padding: 0.38rem 0.95rem; border-radius: 100px; border: 1.5px solid var(--border); font-size: 0.8rem; font-weight: 600; cursor: pointer; color: var(--t2); background: var(--card); transition: all 0.2s; }
+    .chip.active, .chip:hover { background: var(--black); color: var(--white); border-color: var(--black); }
+    .search-wrap { position: relative; }
+    .search-wrap input { padding-left: 2.6rem; min-width: 240px; }
+    .search-icon { position: absolute; left: 0.9rem; top: 50%; transform: translateY(-50%); color: var(--t3); pointer-events: none; }
+
+    /* ════════════════════════════════════════════
+       PAGE — BLOG POST
+       ════════════════════════════════════════════ */
+    .post-cover { width: 100%; max-height: 480px; object-fit: cover; }
+    .post-body  { max-width: 700px; margin: 0 auto; padding: 56px 6vw 80px; font-size: 1.04rem; line-height: 1.85; color: var(--t2); }
+    .post-body h2, .post-body h3 { font-family: var(--font-d); color: var(--t1); margin: 2rem 0 0.9rem; }
+    .post-body p  { margin-bottom: 1.1rem; }
+    .post-body ul, .post-body ol { padding-left: 1.4rem; margin-bottom: 1.1rem; }
+    .post-body li { margin-bottom: 0.45rem; }
+    .post-cta   { background: var(--black); border-radius: var(--radius-lg); padding: 2.8rem; text-align: center; margin: 2.5rem auto; max-width: 580px; }
+    .post-cta h3 { font-family: var(--font-d); font-size: 1.7rem; color: var(--white); margin-bottom: 0.6rem; }
+    .post-cta p  { color: rgba(255,255,255,0.55); margin-bottom: 1.4rem; font-size: 0.93rem; }
+
+    /* ════════════════════════════════════════════
+       PAGE — SERVICES
+       ════════════════════════════════════════════ */
+    .service-icon { width: 44px; height: 44px; background: var(--accent-bg); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-bottom: 1rem; }
+    .service-actions { margin-top: 1.2rem; padding-top: 1.2rem; border-top: 1px solid var(--border); }
+
+    /* ════════════════════════════════════════════
+       PAGE — RESOURCES (COURSES / EBOOKS)
+       ════════════════════════════════════════════ */
+    .tab-bar  { display: flex; gap: 0; border-bottom: 1px solid var(--border); margin-bottom: 2.5rem; }
+    .tab-btn  { padding: 0.7rem 1.6rem; border: none; background: none; font-weight: 700; font-size: 0.88rem; color: var(--t3); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all 0.2s; }
+    .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+    .resource-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px,1fr)); gap: 1.5rem; }
+    .resource-img-wrap { aspect-ratio: 3/4; overflow: hidden; background: linear-gradient(135deg,#f0f0ee,#e4e4e0); display: flex; align-items: center; justify-content: center; font-size: 3rem; }
+    .resource-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* ════════════════════════════════════════════
+       PAGE — CONTACT
+       ════════════════════════════════════════════ */
+    .contact-method { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.1rem; border-radius: var(--radius); border: 1.5px solid var(--border); background: var(--card); transition: border-color 0.2s; text-decoration: none; }
+    .contact-method:hover { border-color: var(--black); }
+    .contact-method .cm-icon  { font-size: 1.3rem; }
+    .contact-method .cm-label { font-weight: 700; font-size: 0.88rem; color: var(--t1); }
+    .contact-method .cm-sub   { font-size: 0.76rem; color: var(--t3); }
+
+    /* ════════════════════════════════════════════
+       ADMIN — LOGIN SCREEN
+       ════════════════════════════════════════════ */
+    .admin-login-page  { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--black); }
+    .admin-login-box   { background: var(--card); border-radius: var(--radius-lg); padding: 2.8rem; width: 380px; max-width: calc(100vw - 3rem); box-shadow: 0 24px 80px rgba(0,0,0,0.45); }
+    .admin-login-brand { font-weight: 800; font-size: 1.35rem; letter-spacing: -0.04em; margin-bottom: 0.3rem; }
+    .admin-login-brand span { color: var(--accent); }
+    .admin-login-sub   { color: var(--t3); font-size: 0.86rem; margin-bottom: 2rem; }
+    .admin-login-err   { background: #FEF2F2; border: 1px solid #FECACA; border-radius: var(--radius); padding: 0.7rem 1rem; font-size: 0.83rem; color: #991B1B; margin-bottom: 1rem; display: none; }
+    .admin-login-err.show { display: block; }
+
+    /* ════════════════════════════════════════════
+       ADMIN — SHELL LAYOUT
+       ════════════════════════════════════════════ */
+    #admin-shell { display: none; min-height: 100vh; }
+    #admin-shell.active { display: flex; }
+
+    .admin-sidebar { width: var(--sidebar-w); flex-shrink: 0; background: var(--black); color: var(--white); position: fixed; top: 0; left: 0; bottom: 0; display: flex; flex-direction: column; z-index: 300; transition: transform 0.3s; }
+    .admin-sidebar-brand { padding: 1.4rem 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .admin-sidebar-brand .logo { font-weight: 800; font-size: 1.1rem; letter-spacing: -0.03em; }
+    .admin-sidebar-brand .logo span { color: var(--accent); }
+    .admin-sidebar-brand .sub { font-size: 0.65rem; color: rgba(255,255,255,0.3); margin-top: 1px; font-weight: 400; }
+    .admin-nav { flex: 1; padding: 0.8rem 0; overflow-y: auto; }
+    .admin-nav-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.7rem 1.5rem; font-size: 0.86rem; font-weight: 600; cursor: pointer; color: rgba(255,255,255,0.5); border-left: 3px solid transparent; transition: all 0.18s; user-select: none; }
+    .admin-nav-item .nav-icon { font-size: 1rem; width: 1.2rem; text-align: center; }
+    .admin-nav-item:hover  { color: var(--white); background: rgba(255,255,255,0.05); }
+    .admin-nav-item.active { color: var(--white); border-left-color: var(--accent); background: rgba(84,82,246,0.13); }
+    .admin-sidebar-foot { padding: 1.2rem 1.5rem; border-top: 1px solid rgba(255,255,255,0.08); }
+    .admin-user-row { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.9rem; }
+    .admin-user-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 0.82rem; font-weight: 700; color: #fff; flex-shrink: 0; }
+    .admin-user-email { font-size: 0.75rem; color: rgba(255,255,255,0.45); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+    .admin-content { margin-left: var(--sidebar-w); flex: 1; padding: 2.4rem; background: var(--bg); min-height: 100vh; }
+    .admin-header  { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem; }
+    .admin-header h2 { font-family: var(--font-d); font-size: 1.75rem; font-weight: 400; }
+    .admin-mobile-bar { display: none; position: fixed; top: 0; left: 0; right: 0; z-index: 350; height: 52px; background: var(--black); padding: 0 1rem; align-items: center; justify-content: space-between; }
+    .admin-mobile-bar .logo { font-weight: 800; font-size: 1rem; color: #fff; letter-spacing: -0.03em; }
+    .admin-mobile-bar .logo span { color: var(--accent); }
+
+    /* ════════════════════════════════════════════
+       ADMIN — STATS
+       ════════════════════════════════════════════ */
+    .stats-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; margin-bottom: 2rem; }
+    .stat-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.4rem; }
+    .stat-card .stat-num { font-family: var(--font-d); font-size: 2.1rem; font-weight: 400; color: var(--accent); }
+    .stat-card .stat-lbl { font-size: 0.72rem; color: var(--t3); font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; margin-top: 0.15rem; }
+
+    /* ════════════════════════════════════════════
+       ADMIN — TABLES
+       ════════════════════════════════════════════ */
+    .admin-table { width: 100%; border-collapse: collapse; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+    .admin-table th { padding: 0.85rem 1.1rem; text-align: left; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--t3); background: var(--bg); border-bottom: 1px solid var(--border); }
+    .admin-table td { padding: 0.85rem 1.1rem; font-size: 0.86rem; color: var(--t2); border-bottom: 1px solid var(--border); vertical-align: middle; }
+    .admin-table tr:last-child td { border-bottom: none; }
+    .admin-table tr:hover td { background: #FAFAF8; }
+    .td-title { font-weight: 600; color: var(--t1); max-width: 260px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .td-actions { display: flex; gap: 0.4rem; }
+
+    /* ════════════════════════════════════════════
+       ADMIN — FORM PANEL
+       ════════════════════════════════════════════ */
+    .form-panel { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.8rem; margin-bottom: 1.8rem; }
+    .form-panel-title { font-weight: 700; font-size: 1rem; margin-bottom: 1.3rem; display: flex; justify-content: space-between; align-items: center; }
+
+    /* ════════════════════════════════════════════
+       ADMIN — RICH EDITOR
+       ════════════════════════════════════════════ */
+    .editor-toolbar { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.45rem; }
+    .editor-btn { padding: 0.3rem 0.65rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); font-size: 0.76rem; font-weight: 700; cursor: pointer; transition: all 0.15s; }
+    .editor-btn:hover { background: var(--black); color: var(--white); border-color: var(--black); }
+    #blog-editor { min-height: 200px; border: 1.5px solid var(--border); border-radius: var(--radius); padding: 1rem; font-family: var(--font-b); font-size: 0.91rem; line-height: 1.75; background: var(--bg); outline: none; transition: border-color 0.2s; }
+    #blog-editor:focus { border-color: var(--accent); background: var(--white); }
+
+    /* ════════════════════════════════════════════
+       RESPONSIVE
+       ════════════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .grid-4          { grid-template-columns: repeat(2,1fr); }
+      .footer-top      { grid-template-columns: 1fr 1fr; }
+      .stats-row       { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger            { display: block; }
+      .blog-grid            { grid-template-columns: 1fr; }
+      .grid-2               { grid-template-columns: 1fr; gap: 2.5rem; }
+      .grid-3               { grid-template-columns: 1fr; }
+      .footer-top           { grid-template-columns: 1fr; gap: 2rem; }
+      .form-row             { grid-template-columns: 1fr; }
+      .admin-sidebar        { transform: translateX(-100%); }
+      .admin-sidebar.mob-open{ transform: translateX(0); }
+      .admin-content        { margin-left: 0; padding: 1.4rem; padding-top: calc(52px + 1.4rem); }
+      .admin-mobile-bar     { display: flex; }
+      .stats-row            { grid-template-columns: 1fr 1fr; }
+      h1                    { font-size: 2.3rem; }
+    }
+    @media (max-width: 480px) {
+      .resource-grid { grid-template-columns: 1fr 1fr; }
+      .stats-row     { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════════════════════════════
+       SECTION 2 ─ HTML SKELETON
+       ══════════════════════════════════════════════════════════════════════ -->
+
+  <!-- Public Navigation -->
+  <nav id="pub-nav">
+    <a class="nav-brand" href="#home">OMNI<span>DOM</span></a>
+    <ul class="nav-links">
+      <li><a href="#blogs">Blog</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#resources">Resources</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Get in Touch</a>
+    <button class="hamburger" onclick="UI.toggleMobileNav()">☰</button>
+  </nav>
+  <div class="mob-nav" id="mob-nav">
+    <a href="#blogs"     onclick="UI.closeMobileNav()">Blog</a>
+    <a href="#services"  onclick="UI.closeMobileNav()">Services</a>
+    <a href="#resources" onclick="UI.closeMobileNav()">Resources</a>
+    <a href="#contact"   onclick="UI.closeMobileNav()">Contact</a>
+  </div>
+
+  <!-- Public Page Container -->
+  <div id="app"></div>
+
+  <!-- Public Footer -->
+  <footer id="pub-footer">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">OMNI<span>DOM</span></div>
+        <p class="footer-desc">Knowledge, services, and growth resources — all in one place. Read, learn, and grow daily.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Content</h5>
+        <a href="#blogs">Blog</a>
+        <a href="#resources">Courses</a>
+        <a href="#resources">E-Books</a>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-col" id="footer-social">
+        <h5>Connect</h5>
+        <!-- Populated by JS from SITE_CONFIG -->
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 OMNIDOM. All rights reserved.</span>
+      <span>Built for creators &amp; thinkers.</span>
+    </div>
+  </footer>
+
+  <!-- Admin Shell (hidden until authenticated) -->
+  <div id="admin-shell">
+    <!-- Sidebar injected by JS after login -->
+  </div>
+
+  <!-- Global Modal Overlay -->
+  <div id="modal" style="display:none"></div>
+
+  <!-- Toast Notification -->
+  <div id="toast"></div>
+
+  <!-- ══════════════════════════════════════════════════════════════════════
+       SECTION 3 ─ JAVASCRIPT
+       ══════════════════════════════════════════════════════════════════════ -->
+  <script type="module">
+
+  /* ══════════════════════════════════════════════════════════════════════════
+     3.1 ─ SITE CONFIGURATION
+     ══════════════════════════════════════════════════════════════════════════ */
+  const SITE_CONFIG = {
+    name      : 'OMNIDOM',
+    tagline   : 'Knowledge. Services. Growth.',
+    whatsapp  : '91XXXXXXXXXX',          // Replace: e.g. "919876543210"
+    instagram : 'https://instagram.com/omnidom',
+    twitter   : 'https://twitter.com/omnidom',
+    email     : 'hello@omnidom.in',
+    adminRoute: 'admin-panel',           // URL hash to access admin
+  };
+
+  /* ══════════════════════════════════════════════════════════════════════════
+     3.2 ─ FIREBASE CONFIGURATION
+     Go to: console.firebase.google.com → Your Project → Project Settings → Apps
+     ══════════════════════════════════════════════════════════════════════════ */
+  const FIREBASE_CONFIG = {
+    apiKey           : 'YOUR_API_KEY',
+    authDomain       : 'YOUR_PROJECT.firebaseapp.com',
+    projectId        : 'YOUR_PROJECT_ID',
+    storageBucket    : 'YOUR_PROJECT.appspot.com',
+    messagingSenderId: 'YOUR_SENDER_ID',
+    appId            : 'YOUR_APP_ID',
+  };
+
+  /* ══════════════════════════════════════════════════════════════════════════
+     3.3 ─ FIREBASE IMPORTS & INITIALIZATION
+     ══════════════════════════════════════════════════════════════════════════ */
+  import { initializeApp }
+    from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
+  import {
+    getFirestore, collection, addDoc, getDocs, getDoc,
+    doc, updateDoc, deleteDoc, query, orderBy, serverTimestamp, where,
+  } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
+  import {
+    getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged,
+  } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
+
+  // Validate config before initializing
+  const FB_CONFIGURED = !FIREBASE_CONFIG.apiKey.startsWith('YOUR');
+
+  let db, auth;
+  if (FB_CONFIGURED) {
+    const app = initializeApp(FIREBASE_CONFIG);
+    db   = getFirestore(app);
+    auth = getAuth(app);
+  }
+
+  /* ══════════════════════════════════════════════════════════════════════════
+     3.4 ─ DATABASE LAYER
+     Clean, named functions for every Firestore operation.
+     Collections: blogs | services | products (courses + ebooks) | leads
+     ══════════════════════════════════════════════════════════════════════════ */
+
+  // ── Generic Firestore helpers ──────────────────────────────────────────────
+
+  async function _fsGetAll(colName, orderField = 'createdAt') {
+    const snap = await getDocs(query(collection(db, colName), orderBy(orderField, 'desc')));
+    return snap.docs.map(d => ({ id: d.id, ...d.data() }));
+  }
+
+  async function _fsAdd(colName, data) {
+    const ref = await addDoc(collection(db, colName), {
+      ...data,
+      createdAt: serverTimestamp(),
+    });
+    return ref.id;
+  }
+
+  async function _fsUpdate(colName, id, data) {
+    await updateDoc(doc(db, colName, id), { ...data, updatedAt: serverTimestamp() });
+  }
+
+  async function _fsDelete(colName, id) {
+    await deleteDoc(doc(db, colName, id));
+  }
+
+  async function _fsGetWhere(colName, field, value) {
+    const snap = await getDocs(query(collection(db, colName), where(field, '==', value), orderBy('createdAt', 'desc')));
+    return snap.docs.map(d => ({ id: d.id, ...d.data() }));
+  }
+
+  // ── Blog CRUD ──────────────────────────────────────────────────────────────
+
+  async function getBlogs()           { return _fsGetAll('blogs'); }
+  async function addBlog(data)        { return _fsAdd('blogs', data); }
+  async function updateBlog(id, data) { return _fsUpdate('blogs', id, data); }
+  async function deleteBlog(id)       { return _fsDelete('blogs', id); }
+
+  // ── Service CRUD ───────────────────────────────────────────────────────────
+
+  async function getServices()              { return _fsGetAll('services', 'name'); }
+  async function addService(data)           { return _fsAdd('services', data); }
+  async function updateService(id, data)    { return _fsUpdate('services', id, data); }
+  async function deleteService(id)          { return _fsDelete('services', id); }
+
+  // ── Product CRUD (courses + ebooks share one collection, typed by `type`) ──
+
+  async function getProducts(type)          { return _fsGetWhere('products', 'type', type); }
+  async function addProduct(data)           { return _fsAdd('products', data); }
+  async function updateProduct(id, data)    { return _fsUpdate('products', id, data); }
+  async function deleteProduct(id)          { return _fsDelete('products', id); }
+
+  // ── Lead CRUD ──────────────────────────────────────────────────────────────
+
+  async function getLeads()           { return _fsGetAll('leads'); }
+  async function addLead(data)        { return _fsAdd('leads', data); }
+  async function deleteLead(id)       { return _fsDelete('leads', id); }
+
+  /* ══════════════════════════════════════════════════════════════════════════
+     3.5 ─ APP STATE
+     Single source of truth. Only mutable data lives here.
+     ══════════════════════════════════════════════════════════════════════════ */
+  const STATE = {
+    currentPage  : 'home',
+    adminSection : 'dashboard',
+    blogFilter   : 'All',
+    blogSearch   : '',
+    resourceTab  : 'course',
+    currentUser  : null,    // Firebase Auth user object — sole auth gate
+  };
+
+  /* ══════════════════════════════════════════════════════════════════════════
+     3.6 ─ UTILITY FUNCTIONS
+     Pure helpers — no side effects on DOM or STATE.
+     ══════════════════════════════════════════════════════════════════════════ */
+
+  function esc(s) {
+    if (s == null) return '';
+    return String(s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function fmtDate(d) {
+    if (!d) return '';
+    const dt = d?.toDate ? d.toDate() : new Date(d);
+    if (isNaN(dt)) return '';
+    return dt.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+  }
+
+  function categoryEmoji(cat) {
+    const map = { Business:'💼', Finance:'💰', Marketing:'📣', Productivity:'⚡', Technology:'💻', Lifestyle:'🌱' };
+    return map[cat] || '📝';
+  }
+
+  function initials(email = '') {
+    return (email[0] || 'A').toUpperCase();
+  }
+
+  function whatsappLink(msg) {
+    return `https://wa.me/${SITE_CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`;
+  }
+
+  /* ══════════════════════════════════════════════════════════════════════════
+     3.7 ─ UI PRIMITIVES
+     Shared UI utilities: toast, modal, loading states.
+     ══════════════════════════════════════════════════════════════════════════ */
+
+  function showToast(msg, type = '') {
+    const el = document.getElementById('toast');
+    el.textContent = msg;
+    el.className   = `show ${type}`;
+    clearTimeout(el._timer);
+    el._timer = setTimeout(() => { el.className = ''; }, 3200);
+  }
+
+  function showModal(html) {
+    const m = document.getElementById('modal');
+    m.style.display = 'flex';
+    m.innerHTML     = html;
+  }
+
+  function closeModal() {
+    const m = document.getElementById('modal');
+    m.style.display = 'none';
+    m.innerHTML     = '';
+  }
+
+  function setLoading(containerSelector, show) {
+    const el = document.querySelector(containerSelector);
+    if (!el) return;
+    if (show) el.innerHTML = `<div class="loading-wrap"><div class="spinner"></div></div>`;
+  }
+
+  /* ══════════════════════════════════════════════════════════════════════════
+     3.8 ─ LAYOUT CONTROLLER
+     Controls which shell (public vs admin) is visible.
+     ══════════════════════════════════════════════════════════════════════════ */
+
+  const Layout = {
+    showPublic() {
+      document.getElementById('pub-nav').style.display    = '';
+      document.getElementById('pub-footer').style.display = '';
+      document.getElementById('app').style.display        = '';
+      document.getElementById('admin-shell').classList.remove('active');
+    },
+    showAdmin() {
+      document.getElementById('pub-nav').style.display    = 'none';
+      document.getElementById('pub-footer').style.display = 'none';
+      document.getElementById('app').style.display        = 'none';
+      document.getElementById('admin-shell').classList.add('active');
+    },
+  };
+
+  /* ══════════════════════════════════════════════════════════════════════════
+     3.9 ─ ROUTER
+     Hash-based SPA router. Admin routes are auth-gated.
+     ══════════════════════════════════════════════════════════════════════════ */
+
+  async function route(rawHash = '') {
+    const hash         = rawHash.replace('#', '') || 'home';
+    const [page, param] = hash.split(':');
+    STATE.currentPage   = page;
+
+    // Admin route guard
+    if (page === SITE_CONFIG.adminRoute) {
+      Layout.showAdmin();
+      if (STATE.currentUser) {
+        await Admin.buildShell();
+        Admin.navigate('dashboard');
+      } else {
+        Admin.renderLogin();
+      }
+      return;
+    }
+
+    // Public routes
+    Layout.showPublic();
+    switch (page) {
+      case 'home'     : await Pages.home(); break;
+      case 'blogs'    : await Pages.blogs(); break;
+      case 'blog'     : await Pages.blogPost(param); break;
+      case 'services' : await Pages.services(); break;
+      case 'resources': await Pages.resources(); break;
+      case 'contact'  : Pages.contact(); break;
+      default         : await Pages.home();
+    }
+    window.scrollTo({ top: 0 });
+  }
+
+  window.addEventListener('hashchange', () => route(location.hash));
+
+  /* ══════════════════════════════════════════════════════════════════════════
+     3.10 ─ UI HELPERS (public-facing)
+     Reusable HTML-generating functions.
+     ══════════════════════════════════════════════════════════════════════════ */
+
+  const UI = {
+
+    toggleMobileNav() {
+      document.getElementById('mob-nav').classList.toggle('open');
+    },
+    closeMobileNav() {
+      document.getElementById('mob-nav').classList.remove('open');
+    },
+
+    blogCard(b) {
+      return `
+        <div class="card blog-card" data-id="${esc(b.id)}" role="button" tabindex="0">
+          ${b.image
+            ? `<img class="card-img" src="${esc(b.image)}" alt="${esc(b.title)}" loading="lazy" />`
+            : `<div class="card-img-placeholder">${categoryEmoji(b.category)}</div>`}
+          <div class="card-body">
+            <div class="blog-meta">
+              <span class="badge badge-accent">${esc(b.category || 'General')}</span>
+              <span class="blog-date">${fmtDate(b.date || b.createdAt)}</span>
+            </div>
+            <div class="blog-title">${esc(b.title)}</div>
+            <div class="blog-excerpt">${esc(b.excerpt || '')}</div>
+            <div class="blog-foot">
+              <span class="blog-date">${esc(b.author || 'OMNIDOM')}</span>
+              <span class="blog-read">Read →</span>
+            </div>
+          </div>
+        </div>`;
+    },
+
+    bindBlogCards(container) {
+      container.querySelectorAll('.blog-card').forEach(el => {
+        const go = () => { location.hash = `#blog:${el.dataset.id}`; };
+        el.addEventListener('click', go);
+        el.addEventListener('keydown', e => { if (e.key === 'Enter') go(); });
+      });
+    },
+
+    resourceCard(r) {
+      return `
+        <div class="card">
+          <div class="resource-img-wrap">
+            ${r.image ? `<img src="${esc(r.image)}" alt="${esc(r.title)}" />` : (r.type === 'course' ? '🎓' : '📚')}
+          </div>
+          <div class="card-body">
+            <span class="badge badge-accent" style="margin-bottom:0.5rem">${esc(r.platform || 'External')}</span>
+            <div style="font-weight:700;font-size:0.97rem;margin-bottom:0.35rem">${esc(r.title)}</div>
+            <p style="font-size:0.82rem;color:var(--t3);margin-bottom:1rem">${esc(r.description || '')}</p>
+            <div class="flex-between">
+              <span style="font-weight:800;color:var(--accent)">${esc(r.price || '')}</span>
+              <a href="${esc(r.link || '#')}" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Get It →</a>
+            </div>
+          </div>
+        </div>`;
+    },
+
+    pageHero({ eyebrow = '', h1 = '', sub = '', actions = '' }) {
+      return `
+        <div class="page-hero">
+          <div class="container">
+            <span class="eyebrow">${eyebrow}</span>
+            <h1>${h1}</h1>
+            ${sub ? `<p class="sub">${sub}</p>` : ''}
+            ${actions ? `<div class="page-hero-actions">${actions}</div>` : ''}
+          </div>
+        </div>`;
+    },
+
+    notConfiguredBanner() {
+      return `<div style="background:#FEF9C3;border:1px solid #FDE047;border-radius:var(--radius);padding:0.9rem 1.2rem;font-size:0.84rem;margin-bottom:1.5rem;color:#713F12">
+        ⚠️ <strong>Firebase not configured.</strong> Open the file and fill in your <code>FIREBASE_CONFIG</code> to connect to your database.
+      </div>`;
+    },
+  };
+
+  /* ══════════════════════════════════════════════════════════════════════════
+     3.11 ─ PUBLIC PAGES
+     Each function renders a full page into #app.
+     ══════════════════════════════════════════════════════════════════════════ */
+
+  const Pages = {
+
+    // ── Home ──────────────────────────────────────────────────────────────────
+    async home() {
+      const app = document.getElementById('app');
+      app.innerHTML = `
+        <!-- Hero -->
+        <div class="page-hero" style="padding-bottom:100px">
+          <div class="container" style="position:relative;z-index:1">
+            <span class="eyebrow">Welcome to OMNIDOM</span>
+            <h1 style="color:#fff;margin-top:0.3rem">Where Ideas<br>Meet <em>Action</em></h1>
+            <p class="sub">Daily insights, expert services, and curated resources to help you build, grow, and earn.</p>
+            <div class="page-hero-actions">
+              <a href="#blogs"    class="btn btn-accent">Read the Blog</a>
+              <a href="#services" class="btn btn-ghost">Explore Services</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Categories -->
+        <section class="section" style="background:var(--white)">
+          <div class="container">
+            <div style="margin-bottom:2.5rem">
+              <span class="eyebrow">Explore</span>
+              <h2>Everything in One Place</h2>
+            </div>
+            <div class="grid-4">
+              <div class="card" style="cursor:pointer;padding:1.8rem 1.5rem" onclick="location.hash='#blogs'">
+                <div style="font-size:1.8rem;margin-bottom:0.7rem">✏️</div>
+                <h3 style="font-size:1rem">Daily Blog</h3>
+                <p style="font-size:0.82rem;margin-top:0.3rem">Fresh insights on business, finance &amp; growth.</p>
+              </div>
+              <div class="card" style="cursor:pointer;padding:1.8rem 1.5rem" onclick="location.hash='#services'">
+                <div style="font-size:1.8rem;margin-bottom:0.7rem">⚡</div>
+                <h3 style="font-size:1rem">Services</h3>
+                <p style="font-size:0.82rem;margin-top:0.3rem">Expert help with branding, content &amp; strategy.</p>
+              </div>
+              <div class="card" style="cursor:pointer;padding:1.8rem 1.5rem" onclick="location.hash='#resources'">
+                <div style="font-size:1.8rem;margin-bottom:0.7rem">🎓</div>
+                <h3 style="font-size:1rem">Courses</h3>
+                <p style="font-size:0.82rem;margin-top:0.3rem">Structured learning on Udemy.</p>
+              </div>
+              <div class="card" style="cursor:pointer;padding:1.8rem 1.5rem" onclick="location.hash='#resources'">
+                <div style="font-size:1.8rem;margin-bottom:0.7rem">📚</div>
+                <h3 style="font-size:1rem">E-Books</h3>
+                <p style="font-size:0.82rem;margin-top:0.3rem">Actionable guides on Amazon.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Featured Blogs -->
+        <section class="section" style="background:var(--bg)">
+          <div class="container">
+            <div class="flex-between" style="margin-bottom:2.5rem">
+              <div><span class="eyebrow">Latest Posts</span><h2>From the Blog</h2></div>
+              <a href="#blogs" class="btn btn-outline btn-sm">View All →</a>
+            </div>
+            <div id="home-blogs-grid" class="blog-grid">
+              <div class="loading-wrap" style="grid-column:1/-1"><div class="spinner"></div></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- CTA Strip -->
+        <section class="section-sm" style="background:var(--black);text-align:center">
+          <div class="container">
+            <h2 style="color:#fff;margin-bottom:0.8rem">Ready to <em style="color:var(--accent)">Level Up?</em></h2>
+            <p style="color:rgba(255,255,255,0.5);max-width:380px;margin:0 auto 1.8rem">Start with the blog or reach out directly. We're here to help.</p>
+            <div style="display:flex;gap:0.9rem;justify-content:center;flex-wrap:wrap">
+              <a href="#blogs"   class="btn btn-accent">Start Reading</a>
+              <a href="#contact" class="btn btn-ghost">Contact Us</a>
+            </div>
+          </div>
+        </section>
+      `;
+
+      // Load blogs async
+      if (FB_CONFIGURED) {
+        try {
+          const blogs = await getBlogs();
+          const grid  = document.getElementById('home-blogs-grid');
+          if (!grid) return;
+          if (!blogs.length) {
+            grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1"><div class="empty-icon">✏️</div><p>No posts yet.</p></div>`;
+            return;
+          }
+          grid.innerHTML = blogs.slice(0, 3).map(b => UI.blogCard(b)).join('');
+          UI.bindBlogCards(grid);
+        } catch(e) {
+          console.error(e);
+        }
+      } else {
+        document.getElementById('home-blogs-grid').innerHTML = UI.notConfiguredBanner();
+      }
+    },
+
+    // ── Blogs Listing ──────────────────────────────────────────────────────────
+    async blogs() {
+      const app = document.getElementById('app');
+      app.innerHTML = UI.pageHero({
+        eyebrow : 'The Blog',
+        h1      : `Ideas & <em>Insights Daily</em>`,
+        sub     : 'Fresh perspectives on business, finance, productivity, and growth.',
+      }) + `
+      <section class="section" style="background:var(--bg)">
+        <div class="container">
+          <div class="flex-between" style="margin-bottom:1.8rem;gap:1rem;flex-wrap:wrap">
+            <div class="filter-chips" id="blog-filter-chips"></div>
+            <div class="search-wrap form-group" style="margin:0">
+              <span class="search-icon">🔍</span>
+              <input id="blog-search" placeholder="Search posts…" value="${esc(STATE.blogSearch)}" oninput="Pages._blogSearch(this.value)" style="padding-left:2.5rem" />
+            </div>
+          </div>
+          <div id="blogs-grid" class="blog-grid">
+            <div class="loading-wrap" style="grid-column:1/-1"><div class="spinner"></div></div>
+          </div>
+        </div>
+      </section>`;
+
+      if (!FB_CONFIGURED) {
+        document.getElementById('blogs-grid').innerHTML = UI.notConfiguredBanner();
+        return;
+      }
+      try {
+        const blogs = await getBlogs();
+        Pages._renderBlogGrid(blogs);
+      } catch(e) {
+        document.getElementById('blogs-grid').innerHTML = `<div class="empty-state" style="grid-column:1/-1"><p>Failed to load posts.</p></div>`;
+      }
+    },
+
+    _renderBlogGrid(blogs) {
+      // Build category chips
+      const cats = ['All', ...new Set(blogs.map(b => b.category).filter(Boolean))];
+      const chipsEl = document.getElementById('blog-filter-chips');
+      if (chipsEl) {
+        chipsEl.innerHTML = cats.map(c =>
+          `<span class="chip ${c === STATE.blogFilter ? 'active' : ''}" onclick="Pages._blogFilter('${esc(c)}')">${esc(c)}</span>`
+        ).join('');
+      }
+      // Apply filter + search
+      let filtered = blogs;
+      if (STATE.blogFilter !== 'All') filtered = filtered.filter(b => b.category === STATE.blogFilter);
+      if (STATE.blogSearch) {
+        const q = STATE.blogSearch.toLowerCase();
+        filtered = filtered.filter(b => `${b.title} ${b.excerpt} ${b.tags || ''}`.toLowerCase().includes(q));
+      }
+      const grid = document.getElementById('blogs-grid');
+      if (!grid) return;
+      if (!filtered.length) {
+        grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1"><div class="empty-icon">🔍</div><p>No posts match your search.</p></div>`;
+        return;
+      }
+      grid.innerHTML = filtered.map(b => UI.blogCard(b)).join('');
+      UI.bindBlogCards(grid);
+    },
+
+    _blogFilter(cat) {
+      STATE.blogFilter = cat;
+      Pages.blogs();
+    },
+
+    _blogSearch(val) {
+      STATE.blogSearch = val;
+      // Re-filter current data without re-fetching
+      if (FB_CONFIGURED) {
+        getBlogs().then(blogs => Pages._renderBlogGrid(blogs));
+      }
+    },
+
+    // ── Blog Post ──────────────────────────────────────────────────────────────
+    async blogPost(id) {
+      if (!id) { location.hash = '#blogs'; return; }
+      const app = document.getElementById('app');
+      app.innerHTML = `<div class="loading-wrap"><div class="spinner"></div></div>`;
+
+      if (!FB_CONFIGURED) {
+        app.innerHTML = UI.notConfiguredBanner();
+        return;
+      }
+      try {
+        const snap = await getDoc(doc(db, 'blogs', id));
+        if (!snap.exists()) { location.hash = '#blogs'; return; }
+        const b = { id: snap.id, ...snap.data() };
+        app.innerHTML = `
+          <div class="page-hero">
+            <div class="container" style="position:relative;z-index:1">
+              <a href="#blogs" style="font-size:0.8rem;color:rgba(255,255,255,0.4);font-weight:600;display:inline-flex;align-items:center;gap:0.4rem;margin-bottom:1.4rem">← All Posts</a>
+              <div class="blog-meta">
+                <span class="badge" style="background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.75)">${esc(b.category || 'General')}</span>
+                <span class="blog-date" style="color:rgba(255,255,255,0.45)">${fmtDate(b.date || b.createdAt)}</span>
+              </div>
+              <h1 style="color:#fff;font-size:clamp(2rem,4vw,3.2rem);max-width:760px">${esc(b.title)}</h1>
+              <p style="color:rgba(255,255,255,0.45);margin-top:0.9rem;font-size:0.88rem">By ${esc(b.author || 'OMNIDOM')}</p>
+            </div>
+          </div>
+          ${b.image ? `<img class="post-cover" src="${esc(b.image)}" alt="${esc(b.title)}" />` : ''}
+          <div class="post-body container">
+            ${b.content || `<p>${esc(b.excerpt || '')}</p>`}
+            <div class="post-cta">
+              <h3>Enjoyed This?</h3>
+              <p>Explore our services or reach out directly for tailored advice.</p>
+              <div style="display:flex;gap:0.9rem;justify-content:center;flex-wrap:wrap">
+                <a href="#contact"  class="btn btn-accent">Contact Us</a>
+                <a href="#blogs"    class="btn btn-ghost">More Posts</a>
+              </div>
+            </div>
+          </div>`;
+      } catch(e) {
+        app.innerHTML = `<div class="empty-state" style="padding:8rem 6vw"><p>Could not load this post.</p><a href="#blogs" class="btn btn-primary" style="margin-top:1rem">← Back to Blog</a></div>`;
+      }
+    },
+
+    // ── Services ───────────────────────────────────────────────────────────────
+    async services() {
+      const app = document.getElementById('app');
+      app.innerHTML = UI.pageHero({
+        eyebrow : 'What We Do',
+        h1      : `Expert Services<br>for <em>Real Growth</em>`,
+        sub     : 'Click any service and connect with us on WhatsApp. We respond within a few hours.',
+      }) + `
+      <section class="section" style="background:var(--bg)">
+        <div class="container">
+          <div id="services-grid" class="grid-auto">
+            <div class="loading-wrap" style="grid-column:1/-1"><div class="spinner"></div></div>
+          </div>
+        </div>
+      </section>
+      <section class="section-sm" style="background:var(--white);text-align:center">
+        <div class="container">
+          <h2 style="max-width:460px;margin:0 auto 0.8rem">Don't see what<br>you need? <em>Ask us.</em></h2>
+          <p style="color:var(--t3);max-width:360px;margin:0 auto 1.8rem;font-size:0.93rem">We handle custom projects. Just drop us a message.</p>
+          <a href="${whatsappLink('Hi OMNIDOM, I have a custom requirement to discuss.')}" target="_blank" class="btn btn-green">💬 WhatsApp Us</a>
+        </div>
+      </section>`;
+
+      if (!FB_CONFIGURED) {
+        document.getElementById('services-grid').innerHTML = UI.notConfiguredBanner();
+        return;
+      }
+      try {
+        const services = await getServices();
+        const grid = document.getElementById('services-grid');
+        if (!services.length) {
+          grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1"><div class="empty-icon">◈</div><p>No services yet.</p></div>`;
+          return;
+        }
+        grid.innerHTML = services.map(s => `
+          <div class="card" style="display:flex;flex-direction:column">
+            <div class="card-body" style="flex:1;display:flex;flex-direction:column">
+              <div class="service-icon">◈</div>
+              <h3>${esc(s.name)}</h3>
+              <p style="font-size:0.9rem;margin-top:0.35rem;flex:1">${esc(s.description)}</p>
+              <div class="service-actions">
+                <button class="btn btn-green" style="width:100%;justify-content:center"
+                  onclick="Pages._openServiceModal('${esc(s.id)}','${esc(s.name)}','${esc(s.whatsapp_msg || '')}')">
+                  💬 Inquire via WhatsApp
+                </button>
+              </div>
+            </div>
+          </div>`).join('');
+      } catch(e) {
+        document.getElementById('services-grid').innerHTML = `<p style="color:var(--red)">Error loading services.</p>`;
+      }
+    },
+
+    _openServiceModal(id, name, prefill) {
+      showModal(`
+        <div class="modal-backdrop" onclick="if(event.target===this)closeModal()">
+          <div class="modal-box">
+            <h3>Enquire About</h3>
+            <p class="modal-sub" style="color:var(--accent);font-weight:700;font-size:0.97rem">${esc(name)}</p>
+            <div class="form-group"><label>Your Name</label><input id="inq-name" placeholder="Your full name" /></div>
+            <div class="form-group"><label>Brief Requirement</label><textarea id="inq-req" style="min-height:80px" placeholder="What do you need?"></textarea></div>
+            <div style="display:flex;gap:0.7rem;margin-top:0.5rem">
+              <button class="btn btn-green" style="flex:1;justify-content:center"
+                onclick="Pages._sendInquiry('${esc(name)}','${esc(prefill)}')">💬 Open WhatsApp</button>
+              <button class="btn btn-outline btn-sm" onclick="closeModal()">Cancel</button>
+            </div>
+          </div>
+        </div>`);
+    },
+
+    _sendInquiry(name, prefill) {
+      const personName = document.getElementById('inq-name').value.trim() || 'a visitor';
+      const req        = document.getElementById('inq-req').value.trim();
+      const msg = prefill
+        ? `${prefill}\n\nName: ${personName}\nNote: ${req}`
+        : `Hi OMNIDOM! I'm ${personName} and I'd like to enquire about: *${name}*.\n\nRequirement: ${req}`;
+      window.open(whatsappLink(msg), '_blank');
+      closeModal();
+    },
+
+    // ── Resources (Courses + Ebooks) ───────────────────────────────────────────
+    async resources() {
+      const app = document.getElementById('app');
+      app.innerHTML = UI.pageHero({
+        eyebrow : 'Resources',
+        h1      : `Courses & <em>E-Books</em>`,
+        sub     : 'Structured learning hosted on trusted external platforms.',
+      }) + `
+      <section class="section" style="background:var(--bg)">
+        <div class="container">
+          <div class="tab-bar">
+            <button class="tab-btn ${STATE.resourceTab==='course'?'active':''}"
+              onclick="Pages._setResourceTab('course')">🎓 Courses</button>
+            <button class="tab-btn ${STATE.resourceTab==='ebook'?'active':''}"
+              onclick="Pages._setResourceTab('ebook')">📚 E-Books</button>
+          </div>
+          <div id="resource-content">
+            <div class="loading-wrap"><div class="spinner"></div></div>
+          </div>
+        </div>
+      </section>`;
+
+      Pages._loadResourceTab();
+    },
+
+    async _loadResourceTab() {
+      const el = document.getElementById('resource-content');
+      if (!el) return;
+      el.innerHTML = `<div class="loading-wrap"><div class="spinner"></div></div>`;
+
+      if (!FB_CONFIGURED) { el.innerHTML = UI.notConfiguredBanner(); return; }
+      try {
+        const items = await getProducts(STATE.resourceTab);
+        if (!items.length) {
+          el.innerHTML = `<div class="empty-state"><div class="empty-icon">${STATE.resourceTab==='course'?'🎓':'📚'}</div><p>No ${STATE.resourceTab==='course'?'courses':'e-books'} yet.</p></div>`;
+          return;
+        }
+        el.innerHTML = `<div class="resource-grid">${items.map(r => UI.resourceCard(r)).join('')}</div>`;
+      } catch(e) {
+        el.innerHTML = `<p style="color:var(--red)">Error loading content.</p>`;
+      }
+    },
+
+    _setResourceTab(tab) {
+      STATE.resourceTab = tab;
+      document.querySelectorAll('.tab-btn').forEach(b => {
+        b.classList.toggle('active', b.textContent.trim().toLowerCase().includes(tab === 'course' ? 'course' : 'book'));
+      });
+      Pages._loadResourceTab();
+    },
+
+    // ── Contact ────────────────────────────────────────────────────────────────
+    contact() {
+      const app = document.getElementById('app');
+      app.innerHTML = UI.pageHero({
+        eyebrow : 'Get in Touch',
+        h1      : `Let's <em>Talk</em>`,
+        sub     : 'Have a question or project idea? We\'d love to hear from you.',
+      }) + `
+      <section class="section" style="background:var(--bg)">
+        <div class="container grid-2" style="gap:4rem">
+          <div>
+            <h3 style="margin-bottom:0.4rem">Send a Message</h3>
+            <p style="font-size:0.88rem;color:var(--t3);margin-bottom:1.5rem">We reply within 24 hours.</p>
+            <div id="contact-form">
+              ${!FB_CONFIGURED ? UI.notConfiguredBanner() : ''}
+              <div class="form-group"><label>Name</label><input id="c-name" placeholder="Your name" /></div>
+              <div class="form-group"><label>Email</label><input id="c-email" type="email" placeholder="you@email.com" /></div>
+              <div class="form-group"><label>Message</label><textarea id="c-msg" placeholder="What's on your mind?"></textarea></div>
+              <button class="btn btn-primary" id="contact-btn" onclick="Pages._submitContact()" ${!FB_CONFIGURED?'disabled':''}>Send Message</button>
+            </div>
+          </div>
+          <div>
+            <h3 style="margin-bottom:0.4rem">Prefer Direct Contact?</h3>
+            <p style="font-size:0.88rem;color:var(--t3);margin-bottom:1.5rem">Reach us where you're most comfortable.</p>
+            <div style="display:flex;flex-direction:column;gap:0.8rem">
+              <a href="https://wa.me/${SITE_CONFIG.whatsapp}" target="_blank" class="contact-method">
+                <span class="cm-icon">💬</span><div><div class="cm-label">WhatsApp</div><div class="cm-sub">Quick replies</div></div>
+              </a>
+              <a href="mailto:${SITE_CONFIG.email}" class="contact-method">
+                <span class="cm-icon">✉️</span><div><div class="cm-label">Email</div><div class="cm-sub">${SITE_CONFIG.email}</div></div>
+              </a>
+              <a href="${SITE_CONFIG.instagram}" target="_blank" class="contact-method">
+                <span class="cm-icon">📸</span><div><div class="cm-label">Instagram</div><div class="cm-sub">DMs open</div></div>
+              </a>
+              <a href="${SITE_CONFIG.twitter}" target="_blank" class="contact-method">
+                <span class="cm-icon">🐦</span><div><div class="cm-label">Twitter / X</div><div class="cm-sub">Tweets &amp; DMs</div></div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>`;
+    },
+
+    async _submitContact() {
+      const name = document.getElementById('c-name').value.trim();
+      const email= document.getElementById('c-email').value.trim();
+      const msg  = document.getElementById('c-msg').value.trim();
+      if (!name || !email || !msg) { showToast('Please fill all fields', 'error'); return; }
+
+      const btn = document.getElementById('contact-btn');
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+
+      try {
+        await addLead({ name, email, message: msg, read: false, date: new Date().toISOString() });
+        document.getElementById('contact-form').innerHTML = `
+          <div style="padding:2rem;background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);text-align:center">
+            <div style="font-size:2rem;margin-bottom:0.5rem">✅</div>
+            <div style="font-weight:700">Message received!</div>
+            <p style="color:var(--t3);font-size:0.88rem;margin-top:0.3rem">We'll be in touch within 24 hours.</p>
+          </div>`;
+        showToast('Message sent!', 'success');
+      } catch(e) {
+        showToast('Error sending message. Please try again.', 'error');
+        btn.disabled = false;
+        btn.textContent = 'Send Message';
+      }
+    },
+  };
+
+  // Expose Pages to global scope for inline handlers
+  window.Pages     = Pages;
+  window.closeModal = closeModal;
+
+  /* ══════════════════════════════════════════════════════════════════════════
+     3.12 ─ ADMIN MODULE
+     Handles login, shell, and all CRUD manager screens.
+     ══════════════════════════════════════════════════════════════════════════ */
+
+  const Admin = {
+
+    // ── Admin Login Screen ─────────────────────────────────────────────────────
+    renderLogin() {
+      const shell = document.getElementById('admin-shell');
+      shell.innerHTML = `
+        <div class="admin-login-page" style="width:100%">
+          <div class="admin-login-box">
+            <div class="admin-login-brand">OMNI<span>DOM</span></div>
+            <p class="admin-login-sub">Admin Panel — Sign in to continue</p>
+            ${!FB_CONFIGURED ? `
+              <div class="admin-login-err show" style="background:#FEF9C3;border-color:#FDE047;color:#713F12">
+                ⚠️ Firebase not configured. Fill in <code>FIREBASE_CONFIG</code> in the file first.
+              </div>` : ''}
+            <div id="login-error" class="admin-login-err"></div>
+            <div class="form-group"><label>Email</label><input id="l-email" type="email" placeholder="admin@omnidom.in" autocomplete="username" /></div>
+            <div class="form-group"><label>Password</label><input id="l-pass" type="password" placeholder="••••••••" autocomplete="current-password" /></div>
+            <button class="btn btn-primary" id="login-btn" style="width:100%;justify-content:center;margin-top:0.3rem"
+              onclick="Admin.submitLogin()" ${!FB_CONFIGURED ? 'disabled' : ''}>Sign In →</button>
+            <p style="text-align:center;margin-top:1.2rem;font-size:0.8rem">
+              <a href="#home" style="color:var(--accent)">← Back to site</a>
+            </p>
+          </div>
+        </div>`;
+
+      document.getElementById('l-pass')?.addEventListener('keydown', e => {
+        if (e.key === 'Enter') Admin.submitLogin();
+      });
+    },
+
+    // ── Login Logic ────────────────────────────────────────────────────────────
+    async submitLogin() {
+      const email = document.getElementById('l-email').value.trim();
+      const pass  = document.getElementById('l-pass').value;
+      const btn   = document.getElementById('login-btn');
+      const errEl = document.getElementById('login-error');
+
+      if (!email || !pass) {
+        errEl.textContent = 'Please enter your email and password.';
+        errEl.classList.add('show');
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Signing in…';
+      errEl.classList.remove('show');
+
+      try {
+        await signInWithEmailAndPassword(auth, email, pass);
+        // onAuthStateChanged will handle redirect
+      } catch(e) {
+        const msgs = {
+          'auth/invalid-credential' : 'Invalid email or password.',
+          'auth/user-not-found'     : 'No account found with this email.',
+          'auth/wrong-password'     : 'Incorrect password.',
+          'auth/too-many-requests'  : 'Too many attempts. Try again later.',
+        };
+        errEl.textContent = msgs[e.code] || 'Login failed. Please try again.';
+        errEl.classList.add('show');
+        btn.disabled    = false;
+        btn.textContent = 'Sign In →';
+      }
+    },
+
+    // ── Build Admin Shell (sidebar + content area) ─────────────────────────────
+    async buildShell() {
+      const user  = STATE.currentUser;
+      const email = user?.email || '';
+      const shell = document.getElementById('admin-shell');
+      shell.innerHTML = `
+        <!-- Mobile top bar -->
+        <div class="admin-mobile-bar">
+          <span class="logo">OMNI<span>DOM</span></span>
+          <button onclick="Admin.toggleMobileSidebar()" style="background:none;border:none;color:#fff;font-size:1.3rem;cursor:pointer">☰</button>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="admin-sidebar" id="admin-sidebar">
+          <div class="admin-sidebar-brand">
+            <div class="logo">OMNI<span>DOM</span></div>
+            <div class="sub">Admin Panel</div>
+          </div>
+          <nav class="admin-nav">
+            <div class="admin-nav-item active" data-section="dashboard" onclick="Admin.navigate('dashboard')">
+              <span class="nav-icon">▣</span> Dashboard
+            </div>
+            <div class="admin-nav-item" data-section="blogs" onclick="Admin.navigate('blogs')">
+              <span class="nav-icon">✏</span> Blogs
+            </div>
+            <div class="admin-nav-item" data-section="services" onclick="Admin.navigate('services')">
+              <span class="nav-icon">◈</span> Services
+            </div>
+            <div class="admin-nav-item" data-section="courses" onclick="Admin.navigate('courses')">
+              <span class="nav-icon">🎓</span> Courses
+            </div>
+            <div class="admin-nav-item" data-section="ebooks" onclick="Admin.navigate('ebooks')">
+              <span class="nav-icon">📚</span> E-Books
+            </div>
+            <div class="admin-nav-item" data-section="leads" onclick="Admin.navigate('leads')">
+              <span class="nav-icon">✉</span> Leads
+            </div>
+          </nav>
+          <div class="admin-sidebar-foot">
+            <div class="admin-user-row">
+              <div class="admin-user-avatar">${initials(email)}</div>
+              <div class="admin-user-email">${esc(email)}</div>
+            </div>
+            <button class="btn btn-outline btn-sm" style="width:100%;justify-content:center"
+              onclick="Admin.logout()">Sign Out</button>
+          </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-content" id="admin-content">
+          <div class="loading-wrap"><div class="spinner"></div></div>
+        </main>`;
+    },
+
+    // ── Sidebar Nav ────────────────────────────────────────────────────────────
+    navigate(section) {
+      STATE.adminSection = section;
+      document.querySelectorAll('.admin-nav-item').forEach(el => {
+        el.classList.toggle('active', el.dataset.section === section);
+      });
+      // Close mobile sidebar
+      document.getElementById('admin-sidebar')?.classList.remove('mob-open');
+
+      switch (section) {
+        case 'dashboard' : Admin.renderDashboard(); break;
+        case 'blogs'     : Admin.renderBlogs(); break;
+        case 'services'  : Admin.renderServices(); break;
+        case 'courses'   : Admin.renderProducts('course'); break;
+        case 'ebooks'    : Admin.renderProducts('ebook'); break;
+        case 'leads'     : Admin.renderLeads(); break;
+      }
+    },
+
+    toggleMobileSidebar() {
+      document.getElementById('admin-sidebar')?.classList.toggle('mob-open');
+    },
+
+    // ── Logout ─────────────────────────────────────────────────────────────────
+    async logout() {
+      try { await signOut(auth); } catch(e) { console.warn(e); }
+      STATE.currentUser = null;
+      location.hash = '#home';
+    },
+
+    // ── Set content area ───────────────────────────────────────────────────────
+    setContent(html) {
+      const el = document.getElementById('admin-content');
+      if (el) el.innerHTML = html;
+    },
+
+    // ────────────────────────────────────────────────────────────────────────────
+    // DASHBOARD
+    // ────────────────────────────────────────────────────────────────────────────
+    async renderDashboard() {
+      Admin.setContent(`<div class="loading-wrap"><div class="spinner"></div></div>`);
+      try {
+        const [blogs, services, leads, courses, ebooks] = await Promise.all([
+          getBlogs(), getServices(), getLeads(),
+          getProducts('course'), getProducts('ebook'),
+        ]);
+        Admin.setContent(`
+          <div class="admin-header">
+            <h2>Dashboard</h2>
+            <span style="font-size:0.8rem;color:var(--t3)">${new Date().toLocaleDateString('en-IN',{weekday:'long',year:'numeric',month:'long',day:'numeric'})}</span>
+          </div>
+
+          <div class="stats-row">
+            <div class="stat-card"><div class="stat-num">${blogs.length}</div><div class="stat-lbl">Blog Posts</div></div>
+            <div class="stat-card"><div class="stat-num">${services.length}</div><div class="stat-lbl">Services</div></div>
+            <div class="stat-card"><div class="stat-num">${courses.length + ebooks.length}</div><div class="stat-lbl">Resources</div></div>
+            <div class="stat-card"><div class="stat-num">${leads.length}</div><div class="stat-lbl">Leads</div></div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1.6fr 1fr;gap:1.4rem">
+            <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.4rem">
+              <div class="flex-between" style="margin-bottom:1.2rem">
+                <h4>Recent Blog Posts</h4>
+                <button class="btn btn-primary btn-sm" onclick="Admin.navigate('blogs')">Manage →</button>
+              </div>
+              ${blogs.length ? blogs.slice(0,6).map(b => `
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:1px solid var(--border)">
+                  <span style="font-size:0.86rem;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:72%">${esc(b.title)}</span>
+                  <span class="badge badge-accent">${esc(b.category || '—')}</span>
+                </div>`).join('')
+              : `<p style="color:var(--t3);font-size:0.86rem">No posts yet.</p>`}
+            </div>
+            <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.4rem">
+              <div class="flex-between" style="margin-bottom:1.2rem">
+                <h4>Recent Leads</h4>
+                <button class="btn btn-primary btn-sm" onclick="Admin.navigate('leads')">View All →</button>
+              </div>
+              ${leads.length ? leads.slice(0,6).map(l => `
+                <div style="padding:0.65rem 0;border-bottom:1px solid var(--border)">
+                  <div style="font-size:0.86rem;font-weight:600">${esc(l.name)}</div>
+                  <div style="font-size:0.76rem;color:var(--t3)">${esc(l.email)}</div>
+                </div>`).join('')
+              : `<p style="color:var(--t3);font-size:0.86rem">No leads yet.</p>`}
+            </div>
+          </div>
+
+          <div style="margin-top:1.4rem;background:var(--black);border-radius:var(--radius-lg);padding:1.4rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem">
+            <div>
+              <div style="font-weight:700;color:#fff">Quick Publish</div>
+              <div style="font-size:0.84rem;color:rgba(255,255,255,0.45)">Write a new blog post</div>
+            </div>
+            <button class="btn btn-accent" onclick="Admin.navigate('blogs');setTimeout(()=>Admin.openBlogForm(),100)">+ New Post</button>
+          </div>`);
+      } catch(e) {
+        Admin.setContent(`<p style="color:var(--red)">Error loading dashboard data.</p>`);
+      }
+    },
+
+    // ────────────────────────────────────────────────────────────────────────────
+    // BLOGS MANAGER
+    // ────────────────────────────────────────────────────────────────────────────
+    async renderBlogs(editId = null) {
+      Admin.setContent(`<div class="loading-wrap"><div class="spinner"></div></div>`);
+      const CATS = ['Business','Finance','Marketing','Productivity','Technology','Lifestyle','Other'];
+      let blogs = [], editing = null;
+      try {
+        blogs = await getBlogs();
+        if (editId) editing = blogs.find(b => b.id === editId) || null;
+      } catch(e) { /* handled below */ }
+
+      Admin.setContent(`
+        <div class="admin-header">
+          <h2>Blog Manager</h2>
+          <button class="btn btn-primary" id="new-blog-btn" onclick="Admin.openBlogForm()">+ New Post</button>
+        </div>
+
+        <!-- Form Panel (hidden by default) -->
+        <div id="blog-form-panel" style="display:${editId ? 'block' : 'none'}">
+          ${Admin._blogFormHtml(editing, CATS)}
+        </div>
+
+        <!-- Table -->
+        <table class="admin-table">
+          <thead><tr><th>Title</th><th>Category</th><th>Author</th><th>Date</th><th>Actions</th></tr></thead>
+          <tbody>
+            ${blogs.length ? blogs.map(b => `
+              <tr>
+                <td class="td-title">${esc(b.title)}</td>
+                <td><span class="badge badge-accent">${esc(b.category || '—')}</span></td>
+                <td style="color:var(--t3)">${esc(b.author || 'OMNIDOM')}</td>
+                <td style="color:var(--t3);font-size:0.8rem;white-space:nowrap">${fmtDate(b.date || b.createdAt)}</td>
+                <td><div class="td-actions">
+                  <button class="btn btn-outline btn-sm" onclick="Admin.renderBlogs('${b.id}')">Edit</button>
+                  <button class="btn btn-danger  btn-sm" onclick="Admin.deleteBlogItem('${b.id}')">Delete</button>
+                </div></td>
+              </tr>`).join('')
+            : `<tr><td colspan="5"><div class="empty-state"><div class="empty-icon">✏️</div><p>No posts yet. Create your first one.</p></div></td></tr>`}
+          </tbody>
+        </table>`);
+
+      if (editId) Admin._initEditor();
+    },
+
+    openBlogForm() {
+      const panel = document.getElementById('blog-form-panel');
+      const btn   = document.getElementById('new-blog-btn');
+      if (!panel) return;
+      const isOpen = panel.style.display !== 'none';
+      panel.style.display = isOpen ? 'none' : 'block';
+      btn.textContent     = isOpen ? '+ New Post' : '✕ Cancel';
+      if (!isOpen) Admin._initEditor();
+    },
+
+    _blogFormHtml(editing, CATS) {
+      return `
+        <div class="form-panel">
+          <div class="form-panel-title">
+            ${editing ? 'Edit Post' : 'New Blog Post'}
+            <button class="btn btn-outline btn-sm" onclick="Admin.renderBlogs()">✕ Cancel</button>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Title *</label><input id="bf-title" value="${esc(editing?.title || '')}" placeholder="Post title" /></div>
+            <div class="form-group"><label>Category</label>
+              <select id="bf-cat">${CATS.map(c => `<option value="${c}" ${editing?.category===c?'selected':''}>${c}</option>`).join('')}</select>
+            </div>
+          </div>
+          <div class="form-group"><label>Excerpt</label><textarea id="bf-excerpt" style="min-height:72px" placeholder="Short description shown on cards">${esc(editing?.excerpt || '')}</textarea></div>
+          <div class="form-group">
+            <label>Content</label>
+            <div class="editor-toolbar">
+              <button class="editor-btn" onclick="Admin._editorCmd('h2')">H2</button>
+              <button class="editor-btn" onclick="Admin._editorCmd('h3')">H3</button>
+              <button class="editor-btn" onclick="Admin._editorCmd('p')">¶</button>
+              <button class="editor-btn" onclick="Admin._editorCmd('b')"><b>B</b></button>
+              <button class="editor-btn" onclick="Admin._editorCmd('i')"><i>I</i></button>
+              <button class="editor-btn" onclick="Admin._editorCmd('ul')">• List</button>
+              <button class="editor-btn" onclick="Admin._editorCmd('ol')">1. List</button>
+            </div>
+            <div id="blog-editor" contenteditable="true">${editing?.content || ''}</div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Author</label><input id="bf-author" value="${esc(editing?.author || 'OMNIDOM')}" /></div>
+            <div class="form-group"><label>Cover Image URL</label><input id="bf-img" value="${esc(editing?.image || '')}" placeholder="https://…" /></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>SEO Title</label><input id="bf-seo-title" value="${esc(editing?.seo_title || '')}" placeholder="Optional" /></div>
+            <div class="form-group"><label>SEO Description</label><input id="bf-seo-desc" value="${esc(editing?.seo_desc || '')}" placeholder="Optional" /></div>
+          </div>
+          <div class="form-group"><label>Tags (comma-separated)</label><input id="bf-tags" value="${esc(editing?.tags || '')}" placeholder="business, growth" /></div>
+          <div style="display:flex;gap:0.7rem;margin-top:0.8rem">
+            <button class="btn btn-accent" onclick="Admin.saveBlog('${editing?.id || ''}')" id="blog-save-btn">
+              ${editing ? 'Update Post' : 'Publish Post'}
+            </button>
+          </div>
+        </div>`;
+    },
+
+    _initEditor() {
+      const el = document.getElementById('blog-editor');
+      if (el && !el.innerHTML.trim()) el.innerHTML = '<p>Start writing here…</p>';
+    },
+
+    _editorCmd(tag) {
+      const el = document.getElementById('blog-editor');
+      if (!el) return;
+      el.focus();
+      if (tag === 'ul' || tag === 'ol') {
+        document.execCommand('insertHTML', false, `<${tag}><li>Item</li></${tag}>`);
+      } else {
+        document.execCommand('insertHTML', false, `<${tag}></${tag}>`);
+      }
+    },
+
+    async saveBlog(editId) {
+      const btn = document.getElementById('blog-save-btn');
+      const data = {
+        title    : document.getElementById('bf-title').value.trim(),
+        category : document.getElementById('bf-cat').value,
+        excerpt  : document.getElementById('bf-excerpt').value.trim(),
+        content  : document.getElementById('blog-editor').innerHTML,
+        author   : document.getElementById('bf-author').value.trim() || 'OMNIDOM',
+        image    : document.getElementById('bf-img').value.trim(),
+        seo_title: document.getElementById('bf-seo-title').value.trim(),
+        seo_desc : document.getElementById('bf-seo-desc').value.trim(),
+        tags     : document.getElementById('bf-tags').value.trim(),
+        date     : new Date().toISOString(),
+      };
+      if (!data.title) { showToast('Title is required', 'error'); return; }
+
+      btn.disabled = true; btn.textContent = 'Saving…';
+      try {
+        if (editId) {
+          await updateBlog(editId, data);
+          showToast('Post updated!', 'success');
+        } else {
+          await addBlog(data);
+          showToast('Post published!', 'success');
+        }
+        Admin.renderBlogs();
+      } catch(e) {
+        showToast('Error saving post.', 'error');
+        btn.disabled = false; btn.textContent = editId ? 'Update Post' : 'Publish Post';
+      }
+    },
+
+    async deleteBlogItem(id) {
+      if (!confirm('Delete this post permanently?')) return;
+      try {
+        await deleteBlog(id);
+        showToast('Post deleted.', 'success');
+        Admin.renderBlogs();
+      } catch(e) {
+        showToast('Error deleting post.', 'error');
+      }
+    },
+
+    // ────────────────────────────────────────────────────────────────────────────
+    // SERVICES MANAGER
+    // ────────────────────────────────────────────────────────────────────────────
+    async renderServices(editId = null) {
+      Admin.setContent(`<div class="loading-wrap"><div class="spinner"></div></div>`);
+      let services = [], editing = null;
+      try {
+        services = await getServices();
+        if (editId) editing = services.find(s => s.id === editId) || null;
+      } catch(e) {}
+
+      Admin.setContent(`
+        <div class="admin-header">
+          <h2>Services Manager</h2>
+          <button class="btn btn-primary" id="new-svc-btn" onclick="Admin.openServiceForm()">+ Add Service</button>
+        </div>
+        <div id="service-form-panel" style="display:${editId ? 'block' : 'none'}">
+          ${Admin._serviceFormHtml(editing)}
+        </div>
+        <table class="admin-table">
+          <thead><tr><th>Name</th><th>Description</th><th>Actions</th></tr></thead>
+          <tbody>
+            ${services.length ? services.map(s => `
+              <tr>
+                <td class="td-title">${esc(s.name)}</td>
+                <td style="color:var(--t3);max-width:320px">${esc((s.description||'').substring(0,90))}${(s.description||'').length>90?'…':''}</td>
+                <td><div class="td-actions">
+                  <button class="btn btn-outline btn-sm" onclick="Admin.renderServices('${s.id}')">Edit</button>
+                  <button class="btn btn-danger  btn-sm" onclick="Admin.deleteServiceItem('${s.id}')">Delete</button>
+                </div></td>
+              </tr>`).join('')
+            : `<tr><td colspan="3"><div class="empty-state"><div class="empty-icon">◈</div><p>No services yet.</p></div></td></tr>`}
+          </tbody>
+        </table>`);
+    },
+
+    openServiceForm() {
+      const panel = document.getElementById('service-form-panel');
+      const btn   = document.getElementById('new-svc-btn');
+      if (!panel) return;
+      const isOpen = panel.style.display !== 'none';
+      panel.style.display = isOpen ? 'none' : 'block';
+      btn.textContent     = isOpen ? '+ Add Service' : '✕ Cancel';
+    },
+
+    _serviceFormHtml(editing) {
+      return `
+        <div class="form-panel">
+          <div class="form-panel-title">
+            ${editing ? 'Edit Service' : 'New Service'}
+            <button class="btn btn-outline btn-sm" onclick="Admin.renderServices()">✕ Cancel</button>
+          </div>
+          <div class="form-group"><label>Service Name *</label><input id="sf-name" value="${esc(editing?.name || '')}" placeholder="e.g. Brand Strategy" /></div>
+          <div class="form-group"><label>Description</label><textarea id="sf-desc" placeholder="What's included in this service">${esc(editing?.description || '')}</textarea></div>
+          <div class="form-group"><label>WhatsApp Pre-fill Message</label><input id="sf-wa" value="${esc(editing?.whatsapp_msg || '')}" placeholder="Hi OMNIDOM, I'm interested in…" /></div>
+          <div style="display:flex;gap:0.7rem;margin-top:0.8rem">
+            <button class="btn btn-accent" onclick="Admin.saveService('${editing?.id || ''}')" id="svc-save-btn">
+              ${editing ? 'Update Service' : 'Add Service'}
+            </button>
+          </div>
+        </div>`;
+    },
+
+    async saveService(editId) {
+      const btn  = document.getElementById('svc-save-btn');
+      const data = {
+        name        : document.getElementById('sf-name').value.trim(),
+        description : document.getElementById('sf-desc').value.trim(),
+        whatsapp_msg: document.getElementById('sf-wa').value.trim(),
+      };
+      if (!data.name) { showToast('Name is required', 'error'); return; }
+      btn.disabled = true; btn.textContent = 'Saving…';
+      try {
+        if (editId) { await updateService(editId, data); showToast('Service updated!', 'success'); }
+        else        { await addService(data);            showToast('Service added!', 'success'); }
+        Admin.renderServices();
+      } catch(e) {
+        showToast('Error saving service.', 'error');
+        btn.disabled = false; btn.textContent = editId ? 'Update Service' : 'Add Service';
+      }
+    },
+
+    async deleteServiceItem(id) {
+      if (!confirm('Delete this service?')) return;
+      try { await deleteService(id); showToast('Service deleted.', 'success'); Admin.renderServices(); }
+      catch(e) { showToast('Error deleting.', 'error'); }
+    },
+
+    // ────────────────────────────────────────────────────────────────────────────
+    // PRODUCTS MANAGER (Courses + E-Books share one renderer)
+    // ────────────────────────────────────────────────────────────────────────────
+    async renderProducts(type, editId = null) {
+      const isCourse = type === 'course';
+      const label    = isCourse ? 'Course' : 'E-Book';
+      Admin.setContent(`<div class="loading-wrap"><div class="spinner"></div></div>`);
+      let items = [], editing = null;
+      try {
+        items = await getProducts(type);
+        if (editId) editing = items.find(p => p.id === editId) || null;
+      } catch(e) {}
+
+      Admin.setContent(`
+        <div class="admin-header">
+          <h2>${isCourse ? 'Courses' : 'E-Books'} Manager</h2>
+          <button class="btn btn-primary" id="new-prod-btn" onclick="Admin.openProductForm()">+ Add ${label}</button>
+        </div>
+        <div id="product-form-panel" style="display:${editId ? 'block' : 'none'}">
+          ${Admin._productFormHtml(editing, type, label)}
+        </div>
+        <table class="admin-table">
+          <thead><tr><th>Title</th><th>Price</th><th>Platform</th><th>Actions</th></tr></thead>
+          <tbody>
+            ${items.length ? items.map(p => `
+              <tr>
+                <td class="td-title">${esc(p.title)}</td>
+                <td style="font-weight:700;color:var(--accent)">${esc(p.price || '—')}</td>
+                <td><span class="badge badge-light">${esc(p.platform || '—')}</span></td>
+                <td><div class="td-actions">
+                  <button class="btn btn-outline btn-sm" onclick="Admin.renderProducts('${type}','${p.id}')">Edit</button>
+                  <button class="btn btn-danger  btn-sm" onclick="Admin.deleteProductItem('${p.id}','${type}')">Delete</button>
+                </div></td>
+              </tr>`).join('')
+            : `<tr><td colspan="4"><div class="empty-state"><div class="empty-icon">${isCourse?'🎓':'📚'}</div><p>No ${label.toLowerCase()}s yet.</p></div></td></tr>`}
+          </tbody>
+        </table>`);
+    },
+
+    openProductForm() {
+      const panel = document.getElementById('product-form-panel');
+      const btn   = document.getElementById('new-prod-btn');
+      if (!panel) return;
+      const isOpen = panel.style.display !== 'none';
+      panel.style.display = isOpen ? 'none' : 'block';
+      if (btn) btn.textContent = isOpen ? `+ Add ${btn.textContent.split(' ').slice(-1)[0]}` : '✕ Cancel';
+    },
+
+    _productFormHtml(editing, type, label) {
+      const defaultPlatform = type === 'course' ? 'Udemy' : 'Amazon';
+      return `
+        <div class="form-panel">
+          <div class="form-panel-title">
+            ${editing ? `Edit ${label}` : `Add ${label}`}
+            <button class="btn btn-outline btn-sm" onclick="Admin.renderProducts('${type}')">✕ Cancel</button>
+          </div>
+          <div class="form-group"><label>Title *</label><input id="pf-title" value="${esc(editing?.title || '')}" placeholder="${label} title" /></div>
+          <div class="form-group"><label>Description</label><textarea id="pf-desc" style="min-height:80px">${esc(editing?.description || '')}</textarea></div>
+          <div class="form-row">
+            <div class="form-group"><label>Price (e.g. ₹1,999)</label><input id="pf-price" value="${esc(editing?.price || '')}" placeholder="₹1,999" /></div>
+            <div class="form-group"><label>Platform</label><input id="pf-platform" value="${esc(editing?.platform || defaultPlatform)}" /></div>
+          </div>
+          <div class="form-group"><label>Redirect Link *</label><input id="pf-link" type="url" value="${esc(editing?.link || '')}" placeholder="https://…" /></div>
+          <div class="form-group"><label>Cover Image URL</label><input id="pf-img" value="${esc(editing?.image || '')}" placeholder="https://…" /></div>
+          <div style="display:flex;gap:0.7rem;margin-top:0.8rem">
+            <button class="btn btn-accent" onclick="Admin.saveProduct('${editing?.id || ''}','${type}')" id="prod-save-btn">
+              ${editing ? `Update ${label}` : `Add ${label}`}
+            </button>
+          </div>
+        </div>`;
+    },
+
+    async saveProduct(editId, type) {
+      const btn  = document.getElementById('prod-save-btn');
+      const data = {
+        type,
+        title      : document.getElementById('pf-title').value.trim(),
+        description: document.getElementById('pf-desc').value.trim(),
+        price      : document.getElementById('pf-price').value.trim(),
+        platform   : document.getElementById('pf-platform').value.trim(),
+        link       : document.getElementById('pf-link').value.trim(),
+        image      : document.getElementById('pf-img').value.trim(),
+      };
+      if (!data.title || !data.link) { showToast('Title and link are required', 'error'); return; }
+      btn.disabled = true; btn.textContent = 'Saving…';
+      try {
+        if (editId) { await updateProduct(editId, data); showToast('Updated!', 'success'); }
+        else        { await addProduct(data);            showToast('Added!', 'success'); }
+        Admin.renderProducts(type);
+      } catch(e) {
+        showToast('Error saving.', 'error');
+        btn.disabled = false;
+      }
+    },
+
+    async deleteProductItem(id, type) {
+      if (!confirm('Delete this item permanently?')) return;
+      try { await deleteProduct(id); showToast('Deleted.', 'success'); Admin.renderProducts(type); }
+      catch(e) { showToast('Error deleting.', 'error'); }
+    },
+
+    // ────────────────────────────────────────────────────────────────────────────
+    // LEADS MANAGER
+    // ────────────────────────────────────────────────────────────────────────────
+    async renderLeads() {
+      Admin.setContent(`<div class="loading-wrap"><div class="spinner"></div></div>`);
+      try {
+        const leads = await getLeads();
+        Admin.setContent(`
+          <div class="admin-header">
+            <h2>Contact Leads</h2>
+            <span style="font-size:0.8rem;color:var(--t3)">${leads.length} message${leads.length !== 1 ? 's' : ''}</span>
+          </div>
+          <table class="admin-table">
+            <thead><tr><th>Name</th><th>Email</th><th>Message</th><th>Date</th><th></th></tr></thead>
+            <tbody>
+              ${leads.length ? leads.map(l => `
+                <tr>
+                  <td style="font-weight:700">${esc(l.name)}</td>
+                  <td><a href="mailto:${esc(l.email)}" style="color:var(--accent)">${esc(l.email)}</a></td>
+                  <td style="color:var(--t3);max-width:300px">${esc((l.message||'').substring(0,110))}${(l.message||'').length>110?'…':''}</td>
+                  <td style="font-size:0.78rem;color:var(--t3);white-space:nowrap">${fmtDate(l.date || l.createdAt)}</td>
+                  <td><button class="btn btn-danger btn-sm" onclick="Admin.deleteLeadItem('${l.id}')">Delete</button></td>
+                </tr>`).join('')
+              : `<tr><td colspan="5"><div class="empty-state"><div class="empty-icon">✉️</div><p>No leads yet. Form submissions appear here.</p></div></td></tr>`}
+            </tbody>
+          </table>`);
+      } catch(e) {
+        Admin.setContent(`<p style="color:var(--red)">Error loading leads.</p>`);
+      }
+    },
+
+    async deleteLeadItem(id) {
+      if (!confirm('Delete this lead?')) return;
+      try { await deleteLead(id); showToast('Lead deleted.', 'success'); Admin.renderLeads(); }
+      catch(e) { showToast('Error deleting.', 'error'); }
+    },
+  };
+
+  // Expose Admin to global scope for inline handlers
+  window.Admin = Admin;
+
+  /* ══════════════════════════════════════════════════════════════════════════
+     3.13 ─ AUTHENTICATION LISTENER
+     Central auth state handler — the only place that gates admin access.
+     ══════════════════════════════════════════════════════════════════════════ */
+
+  function initAuth() {
+    if (!FB_CONFIGURED || !auth) return;
+
+    onAuthStateChanged(auth, async (user) => {
+      STATE.currentUser = user || null;
+
+      // Only re-route if currently on admin page
+      if (location.hash.replace('#', '') === SITE_CONFIG.adminRoute) {
+        if (user) {
+          Layout.showAdmin();
+          await Admin.buildShell();
+          Admin.navigate(STATE.adminSection || 'dashboard');
+        } else {
+          Layout.showAdmin();
+          Admin.renderLogin();
+        }
+      }
+    });
+  }
+
+  /* ══════════════════════════════════════════════════════════════════════════
+     3.14 ─ FOOTER POPULATION
+     Inject social links from SITE_CONFIG into footer.
+     ══════════════════════════════════════════════════════════════════════════ */
+
+  function initFooter() {
+    const social = document.getElementById('footer-social');
+    if (!social) return;
+    social.innerHTML = `
+      <h5>Connect</h5>
+      <a href="${SITE_CONFIG.twitter}"   target="_blank">Twitter / X</a>
+      <a href="${SITE_CONFIG.instagram}" target="_blank">Instagram</a>
+      <a href="mailto:${SITE_CONFIG.email}">Email Us</a>`;
+  }
+
+  /* ══════════════════════════════════════════════════════════════════════════
+     3.15 ─ INITIALIZATION
+     Boot sequence — runs once when the page loads.
+     ══════════════════════════════════════════════════════════════════════════ */
+
+  function init() {
+    initFooter();
+    initAuth();
+    route(location.hash || '#home');
+  }
+
+  init();
+
+  </script>
+</body>
+</html>
