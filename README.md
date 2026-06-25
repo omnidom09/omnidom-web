@@ -28,7 +28,7 @@ OMNIDOM is a lightweight, responsive, single-page web platform and content manag
 
 ---
 
-## ⚙️ Configuration & Setup
+## Configuration & Setup
 
 Since this site is built purely using frontend modules and serverless logic, it requires no traditional build step (`npm run dev`). You can run it locally out of the box using any standard local server wrapper (such as VS Code's *Live Server* or Python's `http.server`).
 
